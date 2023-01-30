@@ -5,7 +5,6 @@ class LinearRegression:
     """
     A linear regression model that uses close function to solve the model.
     """
-
     w: np.ndarray
     b: float
 
