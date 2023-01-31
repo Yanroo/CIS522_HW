@@ -13,10 +13,8 @@ class LinearRegression:
         """
         Initialize the weight and bias.
         """
-        self.w = np.array([])
-        self.b = np.random.randn(
-            1,
-        )
+        self.w = None
+        self.b = None
 
     def fit(self, X: np.ndarray, y: np.ndarray) -> None:
         """
@@ -30,9 +28,10 @@ class LinearRegression:
             None
 
         """
-        self.w = np.linalg.inv(X.T @ X) @ X.T @ y
-        # self.w = params[0:7]
-        # self.b = params[7]
+        X = np.hstack((X, np.ones((X.shape[0], 1))))
+        params = np.linalg.inv(X.T @ X) @ X.T @ y
+        self.w = params[:-1]
+        self.b = params[-1]
 
     def predict(self, X: np.ndarray) -> np.ndarray:
         """
@@ -45,8 +44,8 @@ class LinearRegression:
             np.ndarray: The predicted output.
 
         """
-
-        y_hat = X @ self.w
+        y_hat = X @ self.w + self.b
+        # y_hat = np.matmul(X ,self.w)
         return y_hat
 
 
@@ -56,7 +55,7 @@ class GradientDescentLinearRegression(LinearRegression):
     """
 
     def fit(
-        self, X: np.ndarray, y: np.ndarray, lr: float = 1e-8, epochs: int = 6000
+        self, X: np.ndarray, y: np.ndarray, lr: float = 1.2e-8, epochs: int = 5000
     ) -> None:
         """
         Fit the training data and compute weight.
@@ -72,22 +71,27 @@ class GradientDescentLinearRegression(LinearRegression):
 
         """
 
-        self.w = np.random.randn(
+        # self.w = np.random.randn(
+        #     X.shape[1],
+        # )
+        # self.b = np.random.randn(
+        #     1,
+        # )
+        self.w = np.zeros(
             X.shape[1],
         )
-        self.b = np.random.randn(
-            1,
-        )
+        self.b = 0
 
-        for epoch in range(epochs):
+        for _ in range(epochs):
             y_hat = X @ self.w + self.b
             # print("y_hat: ", y_hat)
-            diff = y - y_hat
+            diff = y_hat - y
             N = X.shape[0]
-            dw = -2 * (X.T @ diff) / N
+            dw = 2 * (X.T @ diff) / N
+            db = np.sum(diff) / N
             # print("dw: ", dw)
             self.w = self.w - lr * dw
-            self.b = self.b - 2 * lr * np.sum(diff) / N
+            self.b = self.b - lr * db
         # print("y_hat: ", y_hat)
 
     def predict(self, X: np.ndarray) -> np.ndarray:
