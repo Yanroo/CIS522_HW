@@ -1,16 +1,16 @@
-import torch
+import torch.nn as nn
 from typing import Callable
 
 
-class MLP:
+class MLP(nn.Module):
     def __init__(
         self,
         input_size: int,
         hidden_size: int,
         num_classes: int,
         hidden_count: int = 1,
-        activation: Callable = torch.nn.ReLU,
-        initializer: Callable = torch.nn.init.ones_,
+        activation: Callable = nn.ReLU,
+        initializer: Callable = nn.init.ones_,
     ) -> None:
         """
         Initialize the MLP.
@@ -22,7 +22,19 @@ class MLP:
             activation: The activation function to use in the hidden layer.
             initializer: The initializer to use for the weights.
         """
-        ...
+        super(MLP, self).__init__()
+        self.input_size = input_size
+        self.hidden_size = hidden_size
+        self.layers = nn.ModuleList()
+        self.actv = activation()
+
+        for _ in range(hidden_count):
+            self.layers.append(nn.Linear(input_size, hidden_size))
+            input_size = hidden_size
+        self.out = nn.Linear(hidden_size, num_classes)
+        for layer in self.layers:
+            initializer(layer.weight)
+        initializer(self.out.weight)
 
     def forward(self, x):
         """
@@ -34,4 +46,7 @@ class MLP:
         Returns:
             The output of the network.
         """
-        ...
+        for layer in self.layers:
+            x = self.actv(layer(x))
+        x = self.out(x)
+        return x
