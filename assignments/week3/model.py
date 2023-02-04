@@ -1,8 +1,13 @@
 import torch.nn as nn
+import torch
 from typing import Callable
 
 
 class MLP(nn.Module):
+    """
+    A multi-layer perceptron.
+    """
+
     def __init__(
         self,
         input_size: int,
@@ -36,7 +41,7 @@ class MLP(nn.Module):
             initializer(layer.weight)
         initializer(self.out.weight)
 
-    def forward(self, x):
+    def forward(self, x: torch.Tensor) -> torch.Tensor:
         """
         Forward pass of the network.
 
