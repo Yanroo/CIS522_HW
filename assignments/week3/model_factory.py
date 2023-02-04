@@ -3,7 +3,6 @@ from model import MLP
 
 
 def create_model(input_dim: int, output_dim: int) -> MLP:
-
     """
     Create a multi-layer perceptron model.
 
