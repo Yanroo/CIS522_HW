@@ -17,6 +17,7 @@ class MLP(nn.Module):
         activation: Callable = nn.ReLU,
         initializer: Callable = nn.init.ones_,
     ) -> None:
+
         """
         Initialize the MLP.
 
