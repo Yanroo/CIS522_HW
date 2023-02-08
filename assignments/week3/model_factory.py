@@ -19,5 +19,10 @@ def create_model(input_dim: int, output_dim: int) -> MLP:
     #     input_dim, 32, output_dim, 2, torch.nn.ReLU, torch.nn.init.xavier_uniform_
     # )
     return MLP(
-        input_dim, 1024, output_dim, 3, torch.nn.LeakyReLU, torch.nn.init.xavier_uniform_
+        input_dim,
+        1024,
+        output_dim,
+        3,
+        torch.nn.LeakyReLU,
+        torch.nn.init.xavier_uniform_,
     )
