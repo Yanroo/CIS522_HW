@@ -76,7 +76,7 @@ class MLP(nn.Module):
         """
         for layer in self.layers:
             x = self.actv(layer(x))
-            x = self.dropout(x)
+            # x = self.dropout(x)
         x = self.out(x)
 
         # x = x.reshape(-1, 1, 28, 28)
