@@ -34,7 +34,7 @@ class MLP(nn.Module):
         self.hidden_size = hidden_size
         self.layers = nn.ModuleList()
         self.actv = activation()
-        # self.dropout = nn.Dropout(p=0.5)
+        self.dropout = nn.Dropout(p=0.5)
 
         # self.conv1 = nn.Conv2d(in_channels=1, out_channels=32, kernel_size=3, stride=1, padding=1)
         # self.conv2 = nn.Conv2d(in_channels=32, out_channels=64, kernel_size=3, stride=1, padding=1)
@@ -76,7 +76,7 @@ class MLP(nn.Module):
         """
         for layer in self.layers:
             x = self.actv(layer(x))
-            # x = self.dropout(x)
+            x = self.dropout(x)
         x = self.out(x)
 
         # x = x.reshape(-1, 1, 28, 28)
