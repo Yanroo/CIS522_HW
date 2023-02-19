@@ -26,7 +26,7 @@ class CustomLRScheduler(_LRScheduler):
         # ... Your Code Here ...
         self.gamma = gamma
         self.step_size = step_size
-        self.warmup_steps = 10 * 50000 // CONFIG.batch_size
+        self.warmup_steps = 3 * 50000 // CONFIG.batch_size
         super(CustomLRScheduler, self).__init__(optimizer, last_epoch, verbose)
 
     def get_lr(self) -> List[float]:
