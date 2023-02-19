@@ -1,6 +1,7 @@
 from typing import List
 import warnings
 from torch.optim.lr_scheduler import _LRScheduler
+from config import CONFIG
 
 
 class CustomLRScheduler(_LRScheduler):
@@ -25,7 +26,7 @@ class CustomLRScheduler(_LRScheduler):
         # ... Your Code Here ...
         self.gamma = gamma
         self.step_size = step_size
-        self.warmup_steps = 4000
+        self.warmup_steps = 10 * 50000 // CONFIG.batch_size
         super(CustomLRScheduler, self).__init__(optimizer, last_epoch, verbose)
 
     def get_lr(self) -> List[float]:
@@ -49,8 +50,9 @@ class CustomLRScheduler(_LRScheduler):
     def print_lr(self, is_verbose, group, lr, epoch=None):
         """Display the current learning rate."""
         # super(CustomLRScheduler, self).print_lr(is_verbose, group, lr, epoch)
+        steps_per_epoch = 50000 // CONFIG.batch_size
         if is_verbose:
-            if self._step_count % 782 == 0:
+            if self._step_count % steps_per_epoch == 0:
                 print(
                     "Adjusting learning rate"
                     " of group {} to {:.4e}.".format(group, lr)
