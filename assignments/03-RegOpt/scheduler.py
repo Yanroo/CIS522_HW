@@ -46,6 +46,7 @@ class CustomLRScheduler(_LRScheduler):
         #         for group in self.optimizer.param_groups]
         step = self._step_count
         return [0.1 * min(step**-0.5, step * self.warmup_steps**-1.5)]
+        # return [-2.28e-7 * step + 3e-3]
 
     def print_lr(self, is_verbose, group, lr, epoch=None):
         """Display the current learning rate."""
