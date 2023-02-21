@@ -6,7 +6,7 @@ from torchvision.transforms import Compose, Normalize, ToTensor
 
 
 class CONFIG:
-    batch_size = 8
+    batch_size = 16
     num_epochs = 10
     initial_learning_rate = 0.002
     initial_weight_decay = 0
