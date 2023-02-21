@@ -15,7 +15,7 @@ class CONFIG:
         # You can pass arguments to the learning rate scheduler
         # constructor here.
         "step_size": 0.2 * num_epochs * 50000 // batch_size,
-        "verbose": True,
+        "verbose": False,
         "gamma": 0.5,
     }
 
