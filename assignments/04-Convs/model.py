@@ -9,7 +9,7 @@ class Model(nn.Module):
         out_dim1 = 32
         out_dim2 = 64
         self.conv1 = nn.Conv2d(num_channels, out_dim1, 3, 1, padding="same")
-        # self.conv2 = nn.Conv2d(32, 64, 3, 1, padding="same")
+        # self.conv2 = nn.Conv2d(32, 64, 3, 1, padding="same")#
         self.fc1 = nn.Linear(out_dim1 * 32 * 32 // 4, 128)
         self.fc2 = nn.Linear(128, num_classes)
 
