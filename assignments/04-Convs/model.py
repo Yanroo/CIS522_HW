@@ -10,12 +10,12 @@ class Model(nn.Module):
 
     def __init__(self, num_channels: int, num_classes: int) -> None:
         super(Model, self).__init__()
-        out_dim1 = 32
-        # out_dim2 = 64
+        out_dim1 = 25
+        out_dim2 = 32
         self.conv1 = nn.Conv2d(num_channels, out_dim1, 3, 1, padding="same")
         # self.conv2 = nn.Conv2d(32, 64, 3, 1, padding="same")#
-        self.fc1 = nn.Linear(out_dim1 * 32 * 32 // 4, 128)
-        self.fc2 = nn.Linear(128, num_classes)
+        self.fc1 = nn.Linear(out_dim1 * 32 * 32 // 4, out_dim2)
+        self.fc2 = nn.Linear(out_dim2, num_classes)
 
     def forward(self, x: torch.Tensor) -> torch.Tensor:
         """
