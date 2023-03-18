@@ -10,7 +10,7 @@ class Model(nn.Module):
 
     def __init__(self, num_channels: int, num_classes: int) -> None:
         super(Model, self).__init__()
-        cout_dim1 = 11
+        cout_dim1 = 10
         kernel_size = 3
         self.pool_size = 5
         after_kernel = (32 - 2 * (kernel_size // 2)) // self.pool_size
@@ -48,7 +48,7 @@ class Model(nn.Module):
         # x = F.relu(x)
 
         # x = self.fc2(x)
-        x = F.relu(x)
+        # x = F.relu(x)
         # x = self.fc3(x)
 
         return x
