@@ -10,16 +10,16 @@ class Model(nn.Module):
 
     def __init__(self, num_channels: int, num_classes: int) -> None:
         super(Model, self).__init__()
-        cout_dim1 = 10
+        cout_dim1 = 15
         # out_dim2 = 32
-        fout_dim1 = 16
+        # fout_dim1 = 16
         # fout_dim2 = 16
         # self.conv1_dw = nn.Conv2d(num_channels, num_channels, 3, 1, padding="same", groups=num_channels)
         # self.conv1_pw = nn.Conv2d(num_channels, out_dim1, 1, 1)
 
-        self.conv1 = nn.Conv2d(num_channels, cout_dim1, 3, 1, padding="same")
+        self.conv1 = nn.Conv2d(num_channels, cout_dim1, 3, 1)
         # self.conv2 = nn.Conv2d(out_dim1, out_dim2, 1, 1, padding="same")#
-        self.fc1 = nn.Linear(cout_dim1 * 32 * 32 // 16, num_classes)
+        self.fc1 = nn.Linear(cout_dim1 * 28 * 28 // 16, num_classes)
         # self.fc2 = nn.Linear(fout_dim1, num_classes)
         # self.fc1 = nn.Linear(960, fout_dim1)
         # self.bn1 = nn.BatchNorm1d(fout_dim1)
