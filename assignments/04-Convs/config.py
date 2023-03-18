@@ -6,12 +6,12 @@ from torchvision.transforms import Compose, ToTensor, Normalize
 
 
 class CONFIG:
-    batch_size = 128
+    batch_size = 96
     num_epochs = 8
 
     optimizer_factory: Callable[
         [nn.Module], torch.optim.Optimizer
-    ] = lambda model: torch.optim.Adam(model.parameters(), lr=3e-3)
+    ] = lambda model: torch.optim.Adam(model.parameters(), lr=5e-3)
 
     # torch.optim.SGD(model.parameters(), lr=8e-2, momentum=0.9)
 
