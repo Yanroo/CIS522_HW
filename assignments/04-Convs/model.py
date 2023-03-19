@@ -7,6 +7,7 @@ class Model(nn.Module):
     """
     The model class.
     """
+
     def __init__(self, num_channels: int, num_classes: int) -> None:
         super(Model, self).__init__()
         cout_dim1 = 10
